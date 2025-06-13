@@ -6,7 +6,7 @@ import { addPaymentDto } from './dto/add-payment.dto';
 
 @Controller('debts')
 export class DebtsController {
-  constructor(private readonly debtsService: DebtsService) { }
+  constructor(private readonly debtsService: DebtsService,) { }
 
   @Post('create')
   createDebt(@Body() createDebtDto: CreateDebtDto) {
@@ -21,11 +21,33 @@ export class DebtsController {
   @Post('add-payment')
   async addPay(
     @Query('_id') _id: string,
-    @Body() addPaymentDto: addPaymentDto){
+    @Body() addPaymentDto: addPaymentDto) {
     const updated = await this.debtsService.addPay(_id, addPaymentDto);
     console.log(_id, addPaymentDto)
   }
 
+  // debts.controller.ts
+  @Get('with-stats')
+  async findAllWithStats() {
+    return this.debtsService.findAllWithStats();
+  }
+
+  @Get('all-payments')
+  async findAllPayments() {
+    return this.debtsService.findAllPayments();
+  }
+
+  // debts.controller.ts
+  @Get('with-stats-detailed')
+  async statsDetailed() {
+    return this.debtsService.findAllWithStatsDetailed();
+  }
+
+    /** GET /stats/progress-general */
+  @Get('progress-general')
+  async progressGeneral() {
+    return this.debtsService.getProgressGeneral();
+  }
 
 
 }

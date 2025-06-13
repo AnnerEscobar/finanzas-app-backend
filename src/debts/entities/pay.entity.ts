@@ -1,4 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { DebtEntity } from "./debt.entity";
+import { Types } from "mongoose";
 
 
 @Schema({ collection: 'pays' })
@@ -13,8 +15,8 @@ export class PayEntity {
     @Prop()
     payDate: Date;
 
-    @Prop()
-    debtId: string;
+    @Prop({ type: Types.ObjectId, ref: DebtEntity.name, required: true })
+    debtId: Types.ObjectId;
 
 }
 

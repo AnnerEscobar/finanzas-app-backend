@@ -6,7 +6,7 @@ import { DebtsModule } from './debts/debts.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.baseUrl),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     DebtsModule
   ],
   controllers: [],
