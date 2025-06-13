@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'http://localhost:4200',        // o un array ['http://localhost:4200','...']
+    origin: ['http://localhost:4200', 'https://finanzasapp-gt.netlify.app'],        // o un array ['http://localhost:4200','...']
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,                      // si envías cookies o auth
     allowedHeaders: 'Content-Type, Authorization'
